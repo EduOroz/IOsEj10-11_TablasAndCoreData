@@ -214,11 +214,11 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WIE-t2-IiG">
                                         <rect key="frame" x="120.5" y="0.0" width="102" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Mostrar">
+                                        <state key="normal" title="Borrar">
                                             <color key="titleColor" red="0.93114920170000004" green="0.95563735569999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="sGE-1O-rxI" kind="show" id="BEn-p4-OcE"/>
+                                            <action selector="onClickBorrar:" destination="BYZ-38-t0r" eventType="touchDown" id="3hw-cX-ZyP"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDa-V5-px6">
@@ -302,9 +302,12 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="Mim-PL-4Nn"/>
                                 </constraints>
-                                <state key="normal" title="Cancelar">
+                                <state key="normal" title="Mostrar">
                                     <color key="titleColor" red="0.93114920170000004" green="0.95563735569999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="sGE-1O-rxI" kind="show" id="qan-1D-DxY"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.84793402559999997" green="0.88595051920000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>

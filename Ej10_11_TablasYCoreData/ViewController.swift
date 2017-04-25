@@ -62,16 +62,16 @@ class ViewController: UIViewController {
         
         //Revisamos si los TextFields están vacíos
         if (tfNombre.text=="")
-        { mostrarAlerta(texto: "Falta de escribir el Nombre")
+        { mostrarAlerta(titulo:"Faltan Datos", texto: "Falta de escribir el Nombre")
         } else {
             if (tfGenero.text=="")
-            { mostrarAlerta(texto: "Falta de escribir el Genero")
+            { mostrarAlerta(titulo:"Faltan Datos", texto: "Falta de escribir el Genero")
             } else {
                 if (tfPais.text=="")
-                { mostrarAlerta(texto: "Falta de escribir el Pais")
+                { mostrarAlerta(titulo:"Faltan Datos", texto: "Falta de escribir el Pais")
                 } else {
                     if (tfAno.text=="")
-                    { mostrarAlerta(texto: "Falta de escribir el Año")
+                    { mostrarAlerta(titulo:"Faltan Datos", texto: "Falta de escribir el Año")
                     } else {
                         guardarGrupo(nombre: tfNombre.text!, genero: tfGenero.text!, pais: tfPais.text!, ano: Int(tfAno.text!)!)
                     }
@@ -113,9 +113,74 @@ class ViewController: UIViewController {
         
     }
     
-    func mostrarAlerta (texto: String ){
+    @IBAction func onClickBorrar(_ sender: UIButton) {
+        
+        //Creamos una alerta en la que solicitaremos el id a borrar
+        let alerta = UIAlertController(title: "ID a Borrar", message: "Introduce el ID a Borrar", preferredStyle: UIAlertControllerStyle.alert)
+        
+        //Añadimos botones a la alerta
+        alerta.addAction(UIAlertAction(title: "Borrar", style: UIAlertActionStyle.default, handler: { (UIAlertAction) -> Void in
+            let textField =  alerta.textFields!.first       //recogemos el texto del textField
+            self.Borrar(id: textField!.text!)  //Ejecutamos la funcion para borrar el registro solicitado
+        }
+        ))
+        
+        let cancelar = UIAlertAction(title: "Cancelar", style: UIAlertActionStyle.default, handler: { alertAction in
+            ()
+            alerta.dismiss(animated: true, completion: nil)
+        })
+        
+        //Añadimos un campo para introducir texto y recuperar el id a borrar
+        alerta.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Introduce el id a Eliminar"}
+        
+        alerta.addAction(cancelar)
+        
+        //Mostramos la alerta en nuestra vista
+        self.present(alerta, animated: true, completion: nil)
+    }
+    
+    func Borrar (id: String){
+        //Nos traemos las variables declaradas en el AppDelegate para el uso de la base de datos
+        let appDeletegate = UIApplication.shared.delegate as? AppDelegate
+        
+        let managedContext = appDeletegate!.persistentContainer.viewContext
+        
+        //Creamos un request sobre la entidad Grpuo
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Grupo")
+        //Configuramos el request para que solo nos devuelva los objetos con nuestro id
+        fetchRequest.predicate = NSPredicate(format: "idGrupo == %@", id)
+        
+        do {
+            let results = try managedContext.fetch(fetchRequest as! NSFetchRequest<NSFetchRequestResult>)
+            if (results.count > 1) {
+                
+                print("Encontrado mas de 1 grupo, no podemos borrar")
+            } else {
+                if (results.count == 1) {
+                    let managedObject = results.first as! Grupo
+                    managedContext.delete(managedObject)
+                    
+                    do {
+                        try managedContext.save()
+                        mostrarAlerta(titulo: "Borrado el registro", texto: "Borrado el id \(id)")
+                    } catch let error as NSError {
+                        print("Error al eliminar: \(error)")
+                    }
+                    
+                } else {
+                    print("No hay personas.")
+                }
+            }
+        } catch let error as NSError {
+            print("Error al recuperar: \(error)")
+        }
+        
+    }
+    
+    func mostrarAlerta (titulo:String, texto: String ){
         //Creamos una alerta
-        let alerta = UIAlertController(title: "Faltan datos", message: texto, preferredStyle: UIAlertControllerStyle.alert)
+        let alerta = UIAlertController(title: titulo, message: texto, preferredStyle: UIAlertControllerStyle.alert)
         
         let volver = UIAlertAction(title: "Volver", style: UIAlertActionStyle.default, handler: { alertAction in
             ()
