@@ -14,6 +14,7 @@
 		B6F8E88A1EAF3E4100AF3754 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6F8E8891EAF3E4100AF3754 /* Assets.xcassets */; };
 		B6F8E88D1EAF3E4100AF3754 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F8E88B1EAF3E4100AF3754 /* LaunchScreen.storyboard */; };
 		B6F8E8971EAF53FD00AF3754 /* ViewControllerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F8E8961EAF53FD00AF3754 /* ViewControllerDisplay.swift */; };
+		B6F8E8991EAF5D7700AF3754 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F8E8981EAF5D7700AF3754 /* ModalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		B6F8E88C1EAF3E4100AF3754 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6F8E88E1EAF3E4100AF3754 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6F8E8961EAF53FD00AF3754 /* ViewControllerDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerDisplay.swift; sourceTree = "<group>"; };
+		B6F8E8981EAF5D7700AF3754 /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				B6F8E87F1EAF3E4100AF3754 /* AppDelegate.swift */,
 				B6F8E8811EAF3E4100AF3754 /* ViewController.swift */,
 				B6F8E8831EAF3E4100AF3754 /* Main.storyboard */,
+				B6F8E8981EAF5D7700AF3754 /* ModalViewController.swift */,
 				B6F8E8961EAF53FD00AF3754 /* ViewControllerDisplay.swift */,
 				B6F8E8891EAF3E4100AF3754 /* Assets.xcassets */,
 				B6F8E88B1EAF3E4100AF3754 /* LaunchScreen.storyboard */,
@@ -143,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6F8E8881EAF3E4100AF3754 /* Ej10_11_TablasYCoreData.xcdatamodeld in Sources */,
+				B6F8E8991EAF5D7700AF3754 /* ModalViewController.swift in Sources */,
 				B6F8E8821EAF3E4100AF3754 /* ViewController.swift in Sources */,
 				B6F8E8801EAF3E4100AF3754 /* AppDelegate.swift in Sources */,
 				B6F8E8971EAF53FD00AF3754 /* ViewControllerDisplay.swift in Sources */,

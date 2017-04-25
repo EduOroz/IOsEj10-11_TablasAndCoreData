@@ -17,9 +17,32 @@ class ViewController: UIViewController {
     @IBOutlet weak var tfPais: UITextField!
     @IBOutlet weak var tfAno: UITextField!
     
+    //Declaramos esta variable como array de los objetos/entidades creados en la BD
+    var managedObjects:[NSManagedObject] = []
+    var id: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        //Vamos a recuperar cuantos grupos tenemos creados para que al añadir un grupo aumentemos en 1 el idGrupo
+        //Nos traemos las variables declaradas en el AppDelegate para el uso de la base de datos
+        let appDeletegate = UIApplication.shared.delegate as? AppDelegate
+        
+        let managedContext = appDeletegate!.persistentContainer.viewContext
+        
+        //Creamos un request sobre la entidad Grpuo
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Grupo")
+        
+        //Recuperamos la entidad Grupo con un try/catch
+        do {
+            managedObjects = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("No pude recuperar los datos guardados. El error fue \(error), \(error.userInfo)")
+        }
+        
+        id = managedObjects.count
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,7 +98,10 @@ class ViewController: UIViewController {
         managedObject.setValue(genero, forKeyPath: "genero")
         managedObject.setValue(pais, forKeyPath: "pais")
         managedObject.setValue(ano, forKeyPath: "ano")
-        managedObject.setValue(0, forKeyPath: "idGrupo")
+        
+        //Aumentamos en 1 el id y lo asignamos a idGrupo
+        id = id + 1
+        managedObject.setValue(id, forKeyPath: "idGrupo")
         
         //Con un try catch guardamos nuestro objeto en la BD
         do {
