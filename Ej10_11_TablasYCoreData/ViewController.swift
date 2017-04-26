@@ -155,7 +155,19 @@ class ViewController: UIViewController {
             let results = try managedContext.fetch(fetchRequest as! NSFetchRequest<NSFetchRequestResult>)
             if (results.count > 1) {
                 
-                print("Encontrado mas de 1 grupo, no podemos borrar")
+                print("Encontrado mas de 1 grupo, borrando en bucle")
+                for result in results {
+                    let managedObject = result as! Grupo
+                    managedContext.delete(managedObject)
+                    
+                    do {
+                        try managedContext.save()
+                        mostrarAlerta(titulo: "Borrado el registro", texto: "Borrado el id \(id)")
+                    } catch let error as NSError {
+                        print("Error al eliminar: \(error)")
+                    }
+                }
+                
             } else {
                 if (results.count == 1) {
                     let managedObject = results.first as! Grupo
