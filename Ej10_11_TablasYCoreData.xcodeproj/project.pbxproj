@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B6CC90E21EB0847F00466D6E /* DatosIniciales.plist in Resources */ = {isa = PBXBuildFile; fileRef = B6CC90E11EB0847F00466D6E /* DatosIniciales.plist */; };
 		B6F8E8801EAF3E4100AF3754 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F8E87F1EAF3E4100AF3754 /* AppDelegate.swift */; };
 		B6F8E8821EAF3E4100AF3754 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F8E8811EAF3E4100AF3754 /* ViewController.swift */; };
 		B6F8E8851EAF3E4100AF3754 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F8E8831EAF3E4100AF3754 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B6CC90E11EB0847F00466D6E /* DatosIniciales.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DatosIniciales.plist; sourceTree = "<group>"; };
 		B6F8E87C1EAF3E4000AF3754 /* Ej10_11_TablasYCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ej10_11_TablasYCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F8E87F1EAF3E4100AF3754 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6F8E8811EAF3E4100AF3754 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				B6F8E88B1EAF3E4100AF3754 /* LaunchScreen.storyboard */,
 				B6F8E88E1EAF3E4100AF3754 /* Info.plist */,
 				B6F8E8861EAF3E4100AF3754 /* Ej10_11_TablasYCoreData.xcdatamodeld */,
+				B6CC90E11EB0847F00466D6E /* DatosIniciales.plist */,
 			);
 			path = Ej10_11_TablasYCoreData;
 			sourceTree = "<group>";
@@ -134,6 +137,7 @@
 			files = (
 				B6F8E88D1EAF3E4100AF3754 /* LaunchScreen.storyboard in Resources */,
 				B6F8E88A1EAF3E4100AF3754 /* Assets.xcassets in Resources */,
+				B6CC90E21EB0847F00466D6E /* DatosIniciales.plist in Resources */,
 				B6F8E8851EAF3E4100AF3754 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,6 +315,7 @@
 				B6F8E8931EAF3E4100AF3754 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

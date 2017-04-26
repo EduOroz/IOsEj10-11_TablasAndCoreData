@@ -35,13 +35,57 @@ class ViewControllerDisplay: UIViewController, UITableViewDelegate, UITableViewD
         //Creamos un request sobre la entidad Grpuo
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Grupo")
         
-        //Recuperamos la entidad Grupo con un try/catch
+        //Recuperamos los contenidos de la entidad/tabla Grupo con un try/catch
         do {
             managedObjects = try managedContext.fetch(fetchRequest)
         } catch let error as NSError {
             print("No pude recuperar los datos guardados. El error fue \(error), \(error.userInfo)")
         }
+        
+        //En caso de que no tengamos registros en la BD los recuperaremos del fichero DatosIniciales.plist
+        
+        if (managedObjects.count==0){
+            print("No hay objetos en la BD vamos a crearlos desde el fichero de Datos Iniciales")
+            //Creamos una ruta al fichero con los datos iniciales
+            let pathPlist = Bundle.main.path(forResource: "DatosIniciales", ofType: "plist")
+            //Cogemos los contenidos del fichero
+            let datosPlist = NSArray(contentsOfFile: pathPlist!)!
+            
+            for diccionarioDatosPlist in datosPlist {
+                
+                //Insertaremos los contenidos en la BD
+                let entity = NSEntityDescription.entity(forEntityName: "Grupo", in: managedContext)
 
+                //Creamos un objeto manejado del tipo entidad en nuestro contexto para la BD
+                let managedObject = NSManagedObject(entity: entity!, insertInto: managedContext)
+                
+                let diccionarioGrupo = diccionarioDatosPlist as! [String: AnyObject]
+                
+                //Asignamos el grupo a nuestro objeto manejado
+                print("nombre registro en fichero a insertar \(diccionarioGrupo["nombre"])")
+                managedObject.setValue(diccionarioGrupo["nombre"], forKeyPath: "nombre")
+                managedObject.setValue(diccionarioGrupo["genero"], forKeyPath: "genero")
+                managedObject.setValue(diccionarioGrupo["pais"], forKeyPath: "pais")
+                managedObject.setValue(diccionarioGrupo["ano"], forKeyPath: "ano")
+                managedObject.setValue(diccionarioGrupo["idGrupo"], forKeyPath: "idGrupo")
+                
+                //Con un try catch guardamos nuestro objeto en la BD
+                do {
+                    try managedContext.save()
+                } catch let error as NSError {
+                    print("No se pudo guardar, error \(error), \(error.userInfo)")
+                }
+            }
+
+        }
+        
+        //Volvemos a recuperar los contenidos de la entidad/tabla Grupo
+        do {
+            managedObjects = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("No pude recuperar los datos guardados. El error fue \(error), \(error.userInfo)")
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
